@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="javascript:void(0)">Logo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item" >
+          <a class="nav-link active" routerLink="bankerList">Bankers</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link active" routerLink="customerList">Customers</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link active" routerLink="application-list">Applications</a>
+        </li>
+        @if (masterSrv.loggedUserData?.role == "Customer") {
+          <li class="nav-item" >
+            <a class="nav-link active" routerLink="new-loan">New Loan</a>
+          </li>        
+        }        
+      </ul>
+      @if(masterSrv.loggedUserData) {
+        <form class="d-flex">
+          <span class="text-white">{{masterSrv.loggedUserData.userName}}</span> 
+          <button class="btn btn-warning" type="button" routerLink="login" (click)="logOff()">LogOff</button>
+        </form>
+      } @else {
+        <form class="d-flex">          
+          <button class="btn btn-primary" type="button" routerLink="login">Login</button>
+        </form>
+       }      
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
